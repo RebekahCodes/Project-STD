@@ -1,0 +1,14 @@
+
+.site-header{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(241, 222, 205);
+}
+
+.site-title {
+    font-family: 'Angella White';
+    font-weight: 100;
+    font-size: 3em;
+    letter-spacing: 3px;
+    word-spacing: 5px;
+}
