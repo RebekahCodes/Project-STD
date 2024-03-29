@@ -17,7 +17,7 @@ const AngellaWhite = localfont({
 
 export const metadata = {
   title: "Save The Date",
-  description: "A Wedding Planning Application",
+  description: "Becky and Gerrone are Getting Married",
 };
 
 export default function RootLayout({ children }) {
