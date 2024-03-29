@@ -1,4 +1,6 @@
-
+body{
+    color: rgb(78, 78, 78);
+}
 .site-header{
     display: flex;
     justify-content: center;

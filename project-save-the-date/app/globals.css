@@ -3,6 +3,10 @@
     src: url('../public/fonts/Angella White.otf') format('opentype');
 }
 
+body{
+    color: rgb(78, 78, 78);
+}
+
 .site-container{
         display: flex;
         flex-direction: column;
@@ -12,4 +16,8 @@
 
 .main-content{
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+

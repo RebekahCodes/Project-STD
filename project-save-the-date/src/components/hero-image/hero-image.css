@@ -1,17 +1,33 @@
+/* hero image styling for mobile */
+
 @media (max-width: 960px) {
-   
     .hero-image{
         display: flex;
         justify-content: center;
         padding: 10px;
-    }
-    
+
+    } 
+}
+
+
+/* hero image styling for desktop */
+@media (min-width: 961px){
+.home-container{
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    padding: 10px;    
 }
 
 .hero-image{
-    display: flex;
-    padding: 10px;
+    padding: 30px;
 }
+}
+
+
+/* hero image styling for all screens */
+
 
 .photo{
     border-radius: 15px;
