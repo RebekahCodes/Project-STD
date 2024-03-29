@@ -8,8 +8,8 @@ export default function HeroImage (props) {
 <Image className="photo"
 src={props.src} 
 alt={props.alt} 
-width={500}
-height={500}
+width={600}
+height={600}
 style={{
     maxWidth: '100%', 
     height:'auto',
