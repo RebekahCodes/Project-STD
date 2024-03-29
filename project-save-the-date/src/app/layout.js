@@ -1,7 +1,17 @@
-import { Inter } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
+import localfont from "next/font/local";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+//imported josefinsans light from google font using next.js built in fonts
+const JosefinSans = Josefin_Sans({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400"],
+});
+
+//imported angella white font downloaded from dafont.
+const AngellaWhite = localfont({
+  src: [{ path: "../../public/fonts/Angella White.otf" }],
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +21,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={JosefinSans.className}>{children}</body>
     </html>
   );
 }
