@@ -7,7 +7,7 @@ import Footer from "../components/footer/footer.jsx";
 //imported josefinsans light from google font using next.js built in fonts
 const JosefinSans = Josefin_Sans({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400"],
+  weight: ["100", "200"],
 });
 
 //imported angella white font downloaded from dafont.

@@ -1,11 +1,11 @@
 import React from 'react'
 import './footer.css'
 
-export default function Footer(props) {
+export default function Footer() {
   return (
 
 <header className="site-footer">
-     <h1>🔥Save The Date Footer</h1>
+     <p>© Becky & Gerrone 2024</p>
 </header>
 
 
