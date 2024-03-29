@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Angella White';
+    src: url('../public/fonts/Angella White.otf') format('opentype');
+}
+
+.site-container{
+        display: flex;
+        flex-direction: column;
+        min-height: 98vh;
+      }
+
+
+.main-content{
+    flex: 1;
+}
