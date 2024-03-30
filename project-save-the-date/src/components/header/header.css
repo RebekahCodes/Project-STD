@@ -4,7 +4,6 @@ body{
 .site-header{
     display: flex;
     justify-content: center;
-    background-color: rgb(241, 222, 205);
 }
 
 .site-title {
