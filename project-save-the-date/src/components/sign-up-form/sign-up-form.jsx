@@ -147,10 +147,11 @@ export default function SignUpForm() {
         {state.guestData.map((guest, index) => {//for the current state, loop through each guest in guestData array. index here just signifies the guest you are on.
           
           const isVisible = guest.isVisible //check if the guest object has a property of isVisible true.
-
-          return isVisible ? (//form needs to have a unique key in react, give the index as the key.
-            <div key={index}>
+          let count = state.guestData.length
+          return isVisible && (//form needs to have a unique key in react, give the index as the key.
             
+            <div key={index}> 
+              {count > 1 && <p>Add guest number {count}</p>} 
               <label htmlFor="firstName">first name</label>
               <input
                 id="firstName"
@@ -181,7 +182,7 @@ export default function SignUpForm() {
                 required
               />
               </div>
-          ) : null;
+          );
         })}
         <div className="form-buttons">
         <div className="button-link">
