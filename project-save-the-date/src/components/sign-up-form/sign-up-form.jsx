@@ -134,6 +134,7 @@ export default function SignUpForm() {
 
           return (//form needs to have a unique key in react, give the index as the key.
             <div key={index}>
+            
               <label htmlFor="firstName">first name</label>
               <input
                 id="firstName"
@@ -161,7 +162,8 @@ export default function SignUpForm() {
                 onChange={(event) => handleInputChanges(event, index)}
                 required
               />
-            </div>
+              </div>
+          
           );
         })}
         <div className="form-buttons">
