@@ -8,18 +8,18 @@ import Button from "../button/button";
 //initial state for form fields is empty string ✅
 //first guest should have a label of "guest 1"
 //all fields for guest 1 are required.
-//once all fields are filled in there will be an option of 2 buttons.
-//add guest button will render another 3 fields for firstname, lastname and email.
+//once all fields are filled in there will be an option of 2 buttons. ✅
+//add guest button will render another 3 fields for firstname, lastname and email. ✅
 //email will be options - (maybe tick box of use lead guest email or enter email)
-//this newly rendered form section will have the labe of guest 2 (or last guest number +1)
+//this newly rendered form section will have the label of guest 2 (or last guest number +1)
 //the add guest button should dynamilcally render a new section for the next guest number.
 //maybe up to a maximum of 5 guests?
-//The second button is submit
-//on form submit an object should be "submitted"
-//the object will have a unique id to identify the household
-//then within the houshold id for each guest there can be guest 1,2,3 ect
-//then a unique guest id
-//then their name, an email whether individual of copied from the lead guests email.
+//The second button is submit ✅
+//on form submit an object should be "submitted" ✅
+//the object will have a unique id to identify the household (this can be backend)
+//then within the houshold id for each guest there can be guest 1,2,3 ect (this can be backend)
+//then a unique guest id (this can be backend)
+//then their name, and email whether individual or copied from the lead guests email.
 
 //initial state for form fields is empty string
 const blankForm = {
