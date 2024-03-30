@@ -1,6 +1,7 @@
 "use client";
 import React, { useReducer } from "react";
 import "./sign-up-form.css";
+import Button from "../button/button";
 
 //Sign Up Form Plan
 //On load user can enter their firstname, last name and email. ✅
@@ -26,7 +27,7 @@ const blankForm = {
     {
       firstName: "",
       lastName: "",
-      email: ""
+      email: "",
     },
   ],
   errorStatus: false,
@@ -45,14 +46,16 @@ function reducer(state, action) {
     case "ADD_GUEST": //if the action type dispatched is "ADD_GUEST"..
       return {
         ...state, // return a copy of the guest object
-        guestData: [ // add it to the guestData array
+        guestData: [
+          // add it to the guestData array
           ...state.guestData, //copy the existing guest data array
-          { // Add a new guest object with empty fields
+          {
+            // Add a new guest object with empty fields
             firstName: "",
             lastName: "",
-            email: ""
-          }
-        ]
+            email: "",
+          },
+        ],
       };
 
     default:
@@ -60,8 +63,9 @@ function reducer(state, action) {
   }
 }
 
-export default function SignUpForm() { //create a sign up form component
-  
+export default function SignUpForm() {
+  //create a sign up form component
+
   const [state, dispatch] = useReducer(reducer, blankForm); //pass blankForm state to the reducer function
 
   function handleInputChanges(event, index) {
@@ -78,7 +82,7 @@ export default function SignUpForm() { //create a sign up form component
         },
       });
       console.log("First Name:", event.target.value);
-      console.log("index is:", index)
+      console.log("index is:", index);
     }
 
     if (event.target.name === "lastName") {
@@ -93,7 +97,7 @@ export default function SignUpForm() { //create a sign up form component
         },
       });
       console.log("Last Name:", event.target.value);
-      console.log("index is:", index)
+      console.log("index is:", index);
     }
 
     if (event.target.name === "email") {
@@ -108,58 +112,68 @@ export default function SignUpForm() { //create a sign up form component
         },
       });
       console.log("email:", event.target.value);
-      console.log("index is:", index)
+      console.log("index is:", index);
     }
-
-
   }
 
-  function addGuest (){
+  function addGuest() {
     dispatch({
-      type: "ADD_GUEST"
-    })
+      type: "ADD_GUEST",
+    });
   }
   function formSubmit(event) {
     event.preventDefault(); //the default behaviour on submitis for the page to refresh. we dont want this.
-    console.log(state.guestData)
+    console.log(state.guestData);
   }
 
   return (
     <div className="signup-form-container">
-      {state.guestData.map((guest,index) => { //for the current state, loop through each guest in guestData array. index here just signifies the guest you are on.
-        
-        return (//form needs to have a unique key in react, give the index as the key.
-          <form key={index} onSubmit={(formSubmit)} > 
-            <label htmlFor="firstName">first name</label>
-            <input
-              id="firstName"
-              type="text"
-              name="firstName"
-              value={guest.firstName}
-              onChange={event => (handleInputChanges(event, index))} //added index here because this function now takes it as a parameter.
-            />
+      <form onSubmit={formSubmit}>
+        {state.guestData.map((guest, index) => {
+          //for the current state, loop through each guest in guestData array. index here just signifies the guest you are on.
 
-            <label htmlFor="lasttName">last name</label>
-            <input id="lastName" 
-            type="text" 
-            name="lastName" 
-            value={guest.lastName}
-            onChange={event => (handleInputChanges(event, index))}
-            />
+          return (//form needs to have a unique key in react, give the index as the key.
+            <div key={index}>
+              <label htmlFor="firstName">first name</label>
+              <input
+                id="firstName"
+                type="text"
+                name="firstName"
+                value={guest.firstName}
+                onChange={(event) => handleInputChanges(event, index)} //added index here because this function now takes it as a parameter.
+              />
 
-            <label htmlFor="email">email</label>
-            <input id="email" 
-            type="email" 
-            name="email"
-            value={guest.email}
-            onChange={event => (handleInputChanges(event, index))}
-            required/>
+              <label htmlFor="lasttName">last name</label>
+              <input
+                id="lastName"
+                type="text"
+                name="lastName"
+                value={guest.lastName}
+                onChange={(event) => handleInputChanges(event, index)}
+              />
 
-            <button onClick={addGuest}>Add Guest</button>
-            <button type="submit">Submit</button>
-          </form>
-        );
-      })}
+              <label htmlFor="email">email</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                value={guest.email}
+                onChange={(event) => handleInputChanges(event, index)}
+                required
+              />
+            </div>
+          );
+        })}
+        <div className="form-buttons">
+        <div className="button-link">
+          <Button label="Add A Guest" onClick={addGuest} />
+        </div>
+
+        <div className="button-link">
+          <Button type="submit" label="Submit" />
+        </div>
+        </div>
+      </form>
     </div>
   );
 }
