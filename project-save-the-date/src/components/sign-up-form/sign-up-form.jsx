@@ -42,6 +42,19 @@ function reducer(state, action) {
       newState.guestData[action.payload.index][fieldName] = newFieldValue; //in the new state(the copy of blankForm) let each field name match its inputted values, apart from index which will be whichever index were at in the guestData array.
       return newState; //return the copy of blankForm, now updated with guests details
 
+    case "ADD_GUEST": //if the action type dispatched is "ADD_GUEST"..
+      return {
+        ...state, // return a copy of the guest object
+        guestData: [ // add it to the guestData array
+          ...state.guestData, //copy the existing guest data array
+          { // Add a new guest object with empty fields
+            firstName: "",
+            lastName: "",
+            email: ""
+          }
+        ]
+      };
+
     default:
       return state; // If no action matches, return the current state
   }
@@ -101,6 +114,11 @@ export default function SignUpForm() { //create a sign up form component
 
   }
 
+  function addGuest (){
+    dispatch({
+      type: "ADD_GUEST"
+    })
+  }
   function formSubmit(event) {
     event.preventDefault(); //the default behaviour on submitis for the page to refresh. we dont want this.
     console.log(state.guestData)
@@ -137,6 +155,7 @@ export default function SignUpForm() { //create a sign up form component
             onChange={event => (handleInputChanges(event, index))}
             required/>
 
+            <button onClick={addGuest}>Add Guest</button>
             <button type="submit">Submit</button>
           </form>
         );
