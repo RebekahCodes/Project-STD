@@ -101,12 +101,17 @@ export default function SignUpForm() { //create a sign up form component
 
   }
 
+  function formSubmit(event) {
+    event.preventDefault(); //the default behaviour on submitis for the page to refresh. we dont want this.
+    console.log(state.guestData)
+  }
+
   return (
     <div className="signup-form-container">
       {state.guestData.map((guest,index) => { //for the current state, loop through each guest in guestData array. index here just signifies the guest you are on.
         
         return (//form needs to have a unique key in react, give the index as the key.
-          <form key={index}> 
+          <form key={index} onSubmit={(formSubmit)} > 
             <label htmlFor="firstName">first name</label>
             <input
               id="firstName"
@@ -131,6 +136,8 @@ export default function SignUpForm() { //create a sign up form component
             value={guest.email}
             onChange={event => (handleInputChanges(event, index))}
             required/>
+
+            <button type="submit">Submit</button>
           </form>
         );
       })}
