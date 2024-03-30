@@ -1,5 +1,5 @@
 "use client";
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import "./sign-up-form.css";
 import Button from "../button/button";
 
@@ -28,9 +28,11 @@ const blankForm = {
       firstName: "",
       lastName: "",
       email: "",
+      isVisible: true,
     },
   ],
   errorStatus: false,
+  
 };
 
 //use a reducer function to update guest data, add new guest (will i need one for form submit?)
@@ -44,20 +46,25 @@ function reducer(state, action) {
       return newState; //return the copy of blankForm, now updated with guests details
 
     case "ADD_GUEST": //if the action type dispatched is "ADD_GUEST"..
+    const updatedGuestData = state.guestData.map(guest => ({ //map through existing guests
+      ...guest,
+      isVisible: false, //set all of their visibiliy to false
+    }));
+
       return {
-        ...state, // return a copy of the guest object
+        ...state, // then return a blank copy of the guest object
         guestData: [
           // add it to the guestData array
-          ...state.guestData, //copy the existing guest data array
+          ...updatedGuestData, //copy the existing guest data array with previous ones which we just set visible to false
           {
-            // Add a new guest object with empty fields
+            // Add a new guest object with empty fields set to visible true.
             firstName: "",
             lastName: "",
             email: "",
+            isVisible: true,
           },
         ],
       };
-
     default:
       return state; // If no action matches, return the current state
   }
@@ -118,9 +125,17 @@ export default function SignUpForm() {
 
   function addGuest() {
     dispatch({
-      type: "ADD_GUEST",
+      type: "ADD_GUEST", // dispatch ths action to the reducer
     });
+
   }
+
+  useEffect(() => { //this is just so that i can console.log the visibilty of the newly added guest in the array. Can be removed later, also remove useEffect import if not using.
+    console.log(state.guestData);
+  }, [state.guestData]);
+  
+  
+
   function formSubmit(event) {
     event.preventDefault(); //the default behaviour on submitis for the page to refresh. we dont want this.
     console.log(state.guestData);
@@ -129,10 +144,11 @@ export default function SignUpForm() {
   return (
     <div className="signup-form-container">
       <form onSubmit={formSubmit}>
-        {state.guestData.map((guest, index) => {
-          //for the current state, loop through each guest in guestData array. index here just signifies the guest you are on.
+        {state.guestData.map((guest, index) => {//for the current state, loop through each guest in guestData array. index here just signifies the guest you are on.
+          
+          const isVisible = guest.isVisible //check if the guest object has a property of isVisible true.
 
-          return (//form needs to have a unique key in react, give the index as the key.
+          return isVisible ? (//form needs to have a unique key in react, give the index as the key.
             <div key={index}>
             
               <label htmlFor="firstName">first name</label>
@@ -142,6 +158,7 @@ export default function SignUpForm() {
                 name="firstName"
                 value={guest.firstName}
                 onChange={(event) => handleInputChanges(event, index)} //added index here because this function now takes it as a parameter.
+                required
               />
 
               <label htmlFor="lasttName">last name</label>
@@ -151,6 +168,7 @@ export default function SignUpForm() {
                 name="lastName"
                 value={guest.lastName}
                 onChange={(event) => handleInputChanges(event, index)}
+                required
               />
 
               <label htmlFor="email">email</label>
@@ -163,8 +181,7 @@ export default function SignUpForm() {
                 required
               />
               </div>
-          
-          );
+          ) : null;
         })}
         <div className="form-buttons">
         <div className="button-link">
