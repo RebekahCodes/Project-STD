@@ -1,5 +1,7 @@
 body{
-    color: rgb(110, 109, 109)
+    color: rgb(110, 109, 109);
+    
+    
 }
 .info-container{
         display: flex;
@@ -38,4 +40,5 @@ body{
 .info-text{
     font-size: 1.5em;
     margin: 20px;
+    margin-bottom: 35px;
 }
