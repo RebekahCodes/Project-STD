@@ -1,9 +1,10 @@
 import "./sign-up.css";
+import SignUpForm from "@/components/sign-up-form/sign-up-form";
 
 export default function Test() {
   return (
     <>
-      <h1 className="sign-up">this is the test sign up page</h1>
+      <SignUpForm />
     </>
   );
 }

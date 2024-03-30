@@ -1,0 +1,31 @@
+.signup-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%; 
+    max-width: 600px; 
+    margin: 0 auto; 
+}
+    
+
+.signup-form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    width: 100%; /* Make the form full width */
+    max-width: 400px; /* Limit the maximum width of the form */
+}
+
+.signup-form-container label {
+    margin: 10px;
+}
+
+.signup-form-container input {
+    width: 90%; /* Make the input fields full width */
+    margin:0;
+    border: 1px rgb(192, 189, 189) solid;
+    border-radius: 15px;
+    padding: 10px; /* Add padding for better spacing */
+    margin-bottom: 15px; /* Add margin bottom for spacing between input fields */
+}
