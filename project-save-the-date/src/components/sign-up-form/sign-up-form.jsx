@@ -2,24 +2,9 @@
 import React, { useReducer, useEffect } from "react";
 import "./sign-up-form.css";
 import Button from "../button/button";
+import Toggle from "../toggle/toggle";
 
-//Sign Up Form Plan
-//On load user can enter their firstname, last name and email. ✅
-//initial state for form fields is empty string ✅
-//first guest should have a label of "guest 1"
-//all fields for guest 1 are required.
-//once all fields are filled in there will be an option of 2 buttons. ✅
-//add guest button will render another 3 fields for firstname, lastname and email. ✅
-//email will be options - (maybe tick box of use lead guest email or enter email)
-//this newly rendered form section will have the label of guest 2 (or last guest number +1)
-//the add guest button should dynamilcally render a new section for the next guest number.
-//maybe up to a maximum of 5 guests?
-//The second button is submit ✅
-//on form submit an object should be "submitted" ✅
-//the object will have a unique id to identify the household (this can be backend)
-//then within the houshold id for each guest there can be guest 1,2,3 ect (this can be backend)
-//then a unique guest id (this can be backend)
-//then their name, and email whether individual or copied from the lead guests email.
+
 
 //initial state for form fields is empty string
 const blankForm = {
@@ -48,7 +33,7 @@ function reducer(state, action) {
     case "ADD_GUEST": //if the action type dispatched is "ADD_GUEST"..
     const updatedGuestData = state.guestData.map(guest => ({ //map through existing guests
       ...guest,
-      isVisible: false, //set all of their visibiliy to false
+      // isVisible: false, //set all of their visibiliy to false
     }));
 
       return {
@@ -151,7 +136,7 @@ export default function SignUpForm() {
           return isVisible && (//form needs to have a unique key in react, give the index as the key.
             
             <div key={index}> 
-              {count > 1 && <p>Add guest number {count}</p>} 
+             {count > 1 && <Toggle label={count > 1 && <p>guest number {index+1}</p>} />}
               <label htmlFor="firstName">first name</label>
               <input
                 id="firstName"

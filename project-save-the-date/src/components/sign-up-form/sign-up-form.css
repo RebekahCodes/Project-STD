@@ -45,3 +45,10 @@
     width: 100%; 
     margin: 5px;
 }
+
+
+/* stops the background colour of the input fields from turning blue when text is entered */
+input:-webkit-autofill {
+    -webkit-text-fill-color: inherit; 
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset; 
+}
