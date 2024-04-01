@@ -33,7 +33,7 @@ function reducer(state, action) {
     case "ADD_GUEST": //if the action type dispatched is "ADD_GUEST"..
     const updatedGuestData = state.guestData.map(guest => ({ //map through existing guests
       ...guest,
-      // isVisible: false, //set all of their visibiliy to false
+      isVisible: false, //set all of their visibiliy to false
     }));
 
       return {
@@ -50,6 +50,13 @@ function reducer(state, action) {
           },
         ],
       };
+      case "TOGGLE_VISIBILITY"://if the action type dispatched is "TOGGLE_VISIBILITY"
+      return {
+        ...state, //return a copy of the existing guest data
+        guestData: state.guestData.map((guest, index) => //map through the guest data array noting each guest/index
+        index === action.payload ? { ...guest, isVisible: !guest.isVisible } : guest //when the inde matches the index we're looking for, toggle its visibility status.
+      ),
+    };
     default:
       return state; // If no action matches, return the current state
   }
@@ -115,6 +122,13 @@ export default function SignUpForm() {
 
   }
 
+  function toggleVisibility(index){
+    dispatch ({
+      type: "TOGGLE_VISIBILITY",
+      payload: index, //this is how the action knows which index its looking for when t mapps through guest data.
+    });
+  }
+
   useEffect(() => { //this is just so that i can console.log the visibilty of the newly added guest in the array. Can be removed later, also remove useEffect import if not using.
     console.log(state.guestData);
   }, [state.guestData]);
@@ -133,40 +147,51 @@ export default function SignUpForm() {
           
           const isVisible = guest.isVisible //check if the guest object has a property of isVisible true.
           let count = state.guestData.length
-          return isVisible && (//form needs to have a unique key in react, give the index as the key.
-            
+          
+          return (
             <div key={index}> 
-             {count > 1 && <Toggle label={count > 1 && <p>guest number {index+1}</p>} />}
-              <label htmlFor="firstName">first name</label>
-              <input
-                id="firstName"
-                type="text"
-                name="firstName"
-                value={guest.firstName}
-                onChange={(event) => handleInputChanges(event, index)} //added index here because this function now takes it as a parameter.
-                required
-              />
 
-              <label htmlFor="lasttName">last name</label>
-              <input
-                id="lastName"
-                type="text"
-                name="lastName"
-                value={guest.lastName}
-                onChange={(event) => handleInputChanges(event, index)}
-                required
-              />
+             {!isVisible && (
+        <Toggle
+          label={count > 1 && <p>guest number {index + 1}</p>}
+          onClick={() => toggleVisibility(index)}
+        />
+      )}
+{isVisible && (
+        <>
 
-              <label htmlFor="email">email</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                value={guest.email}
-                onChange={(event) => handleInputChanges(event, index)}
-                required
-              />
-              </div>
+             <label htmlFor={`firstName_${index}`}>first name</label>
+            <input
+              id={`firstName_${index}`}
+              type="text"
+              name="firstName"
+              value={guest.firstName}
+              onChange={(event) => handleInputChanges(event, index)}
+              required
+            />
+
+            <label htmlFor={`lastName_${index}`}>last name</label>
+            <input
+              id={`lastName_${index}`}
+              type="text"
+              name="lastName"
+              value={guest.lastName}
+              onChange={(event) => handleInputChanges(event, index)}
+              required
+            />
+
+            <label htmlFor={`email_${index}`}>email</label>
+            <input
+              id={`email_${index}`}
+              type="email"
+              name="email"
+              value={guest.email}
+              onChange={(event) => handleInputChanges(event, index)}
+              required
+            />
+            </>
+)}
+          </div>
           );
         })}
         <div className="form-buttons">
@@ -180,5 +205,6 @@ export default function SignUpForm() {
         </div>
       </form>
     </div>
+    
   );
 }
