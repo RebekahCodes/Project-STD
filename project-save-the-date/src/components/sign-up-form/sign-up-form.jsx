@@ -10,11 +10,21 @@ import Toggle from "../toggle/toggle";
 const blankForm = {
   guestData: [
     {
-      firstName: "",
-      lastName: "",
+      household_id: 0,
+      first_name: "",
+      last_name: "",
       email: "",
+      phone_number: "",
+      rsvp_status: "",
+      wine_choice: "",
+      meal_choice: "",
+      accommodation: "",
       isVisible: true,
-    },
+      //firstName: "",
+      //lastName: "",
+      //email: "",
+      
+    },  
   ],
   errorStatus: false,
   
@@ -43,13 +53,20 @@ function reducer(state, action) {
           ...updatedGuestData, //copy the existing guest data array with previous ones which we just set visible to false
           {
             // Add a new guest object with empty fields set to visible true.
-            firstName: "",
-            lastName: "",
+            household_id: 0,
+            first_name: "",
+            last_name: "",
             email: "",
+            phone_number: "",
+            rsvp_status: "",
+            wine_choice: "",
+            meal_choice: "",
+            accommodation: "",
             isVisible: true,
           },
         ],
       };
+
       case "TOGGLE_VISIBILITY"://if the action type dispatched is "TOGGLE_VISIBILITY"
       return {
         ...state, //return a copy of the existing guest data
@@ -59,6 +76,8 @@ function reducer(state, action) {
     };
     default:
       return state; // If no action matches, return the current state
+
+    
   }
 }
 
@@ -69,7 +88,7 @@ export default function SignUpForm() {
 
   function handleInputChanges(event, index) {
     //create a function to update the input field values as the user types (onChange)
-    if (event.target.name === "firstName") {
+    if (event.target.name === "first_name") {
       //if the input fields name is "firstName"
       dispatch({
         type: "UPDATE_GUEST_DATA", //dispatch this action to the reducer
@@ -84,7 +103,7 @@ export default function SignUpForm() {
       console.log("index is:", index);
     }
 
-    if (event.target.name === "lastName") {
+    if (event.target.name === "last_name") {
       //if the input fields name is "lastName"
       dispatch({
         type: "UPDATE_GUEST_DATA", //dispatch this action to the reducer
@@ -116,11 +135,24 @@ export default function SignUpForm() {
   }
 
   function addGuest() {
+    //if all fields are inputed then dispatch the add guest action, else display message, please add guest details
+    const lastGuest = state.guestData[state.guestData.length - 1]; // Identify the most recent guest being added as lastGuest
+    
+    const requiredFields = ["first_name", "last_name", "email"];// Identify which fields are required and check if any of them are empty
+    const hasEmptyFields = requiredFields.some(
+      (field) => lastGuest[field].trim() === ""
+    );
+      //if it does not have any empty fields, dispatch ADDGUEST to the reducer 
+    if (!hasEmptyFields) {
     dispatch({
-      type: "ADD_GUEST", // dispatch ths action to the reducer
+      type: "ADD_GUEST", 
     });
-
+  } else {
+    //If it does have empty fields, log error message 
+    console.log("Please fill in all the form fields.");
   }
+}
+  
 
   function toggleVisibility(index){
     dispatch ({
@@ -135,10 +167,41 @@ export default function SignUpForm() {
   
   
 
-  function formSubmit(event) {
+  async function formSubmit(event) {
     event.preventDefault(); //the default behaviour on submitis for the page to refresh. we dont want this.
-    console.log(state.guestData);
+    //Declare a variable that represents the guest(s) as an array of objects, must also be parsed as a JSON object.
+    const guestDataJson = JSON.stringify(state.guestData); 
+    console.log(guestDataJson)
+    //Create a fetch which posts to the api with that variable fed to the addGuest function as an argument, 
+    try {
+    const response = await fetch ("http://localhost:3001/guests/", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: guestDataJson,
+      
+    })
+    console.log(guestDataJson)
+    if (response.ok) {
+      // Handle successful response (e.g., clear form, display success message)
+      console.log("Guests added successfully!");
+      console.log(guestDataJson);
+    } else {
+      const errorData = await response.json(); // Parse error response if not ok
+      console.error("Error adding guest(s):", errorData.message);
+      console.log(guestDataJson);
+      // to add display error message to user
+    }
+  } catch (error) {
+    console.error("Error sending request:", error);
+    console.log(guestDataJson);
+    // Display error message to user
   }
+
+}
+    
+
 
   return (
     <div className="signup-form-container">
@@ -160,22 +223,22 @@ export default function SignUpForm() {
 {isVisible && (
         <>
 
-             <label htmlFor={`firstName_${index}`}>first name</label>
+             <label htmlFor={`first_name_${index}`}>first name</label>
             <input
-              id={`firstName_${index}`}
+              id={`first_name_${index}`}
               type="text"
-              name="firstName"
-              value={guest.firstName}
+              name="first_name"
+              value={guest.first_name}
               onChange={(event) => handleInputChanges(event, index)}
               required
             />
 
-            <label htmlFor={`lastName_${index}`}>last name</label>
+            <label htmlFor={`last_name_${index}`}>last name</label>
             <input
-              id={`lastName_${index}`}
+              id={`last_name_${index}`}
               type="text"
-              name="lastName"
-              value={guest.lastName}
+              name="last_name"
+              value={guest.last_name}
               onChange={(event) => handleInputChanges(event, index)}
               required
             />
