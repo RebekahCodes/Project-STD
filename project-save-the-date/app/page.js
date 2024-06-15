@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="home-container">
-      <HeroImage src="/images/hero-image.png" alt="engagement photo" />
+      <HeroImage src="/images/stock-image.png" alt="photo of a couple" />
 
       <div className="info-grid">
         <Info
