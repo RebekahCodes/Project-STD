@@ -3,24 +3,5 @@
     flex-direction: column;
 }
 
-/* Responsive Styles */
-
-@media (min-width: 961px) {
-    .sign-up-page-container {
-      flex-direction: row;
-    }
-  
-    .sign-up-grid-container {
-      flex: 1;
-      display: flex;
-      justify-content: flex-end;
-      padding: 20px;
-    }
-  
-    .info {
-      flex: 1;
-      padding: 20px;
-    }
-  }
 
 
