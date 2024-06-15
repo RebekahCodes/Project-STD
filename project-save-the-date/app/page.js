@@ -12,7 +12,7 @@ export default function Home() {
       <div className="info-grid">
         <Info
           title="Becky & Gerrone Are Getting Married!"
-          date="4th July 2025"
+          date="4th July 2024"
           location="SURREY, UK"
           text="Please click below to enter your contact details so that we can send your invitation"
         />
