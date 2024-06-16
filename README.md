@@ -4,7 +4,7 @@ A front end application which acts as a digital save the date where your wedding
 
 ## Tech Stack
 
-JavaScript, React, Nextjs, HTML, CSS
+JavaScript, React, Nextjs, HTML, CSS, Vercel
 
 ## Features
 ✨ Sleek landing page which acts as a digital save the date featuring couple photo (replace with your own!)<br/>
