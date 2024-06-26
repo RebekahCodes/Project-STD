@@ -9,7 +9,7 @@ export default function SignUp() {
         <Info
           title="Becky & Gerrone"
           date="4th July 2024"
-          text="If more than one person from your household has received a save-the-date, you can respond on their behalf by choosing to 'Add A Guest'"
+          text="Dev-Test If more than one person from your household has received a save-the-date, you can respond on their behalf by choosing to 'Add A Guest'"
         />
         <SignUpForm />
       </div>
