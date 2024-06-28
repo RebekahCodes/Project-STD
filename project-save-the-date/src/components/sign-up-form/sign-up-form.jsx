@@ -1,15 +1,19 @@
 "use client";
-import React, { useReducer } from "react";
+import React, { useReducer, useState} from "react";
 import "./sign-up-form.css";
 import Button from "../button/button";
 import Toggle from "../toggle/toggle";
 import {createGuest} from "../../helpers/create-guest.jsx";
 import {newGuest, reducer} from "../../state/reducer.jsx";
 import { handleInputChanges } from "@/state/input-change";
+import ThankYou from "../thank-you/thank-you";
 
 
 export default function SignUpForm() { //create a sign up form component
   const [state, dispatch] = useReducer(reducer, newGuest); //pass newGuest state to the reducer function
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
   
   function addGuest() { //renders a new blank form to represent an additional guest to be added
     const lastGuest = state.guestData[state.guestData.length - 1]; // Identify the most recent guest being added as lastGuest
@@ -29,12 +33,40 @@ export default function SignUpForm() { //create a sign up form component
       payload: index, //this is how the action knows which index its looking for when it maps through guest data.
     });
   }
-  
+  //Create an async function that waits for the response from the API call and then gives the user a message
+  async function handleSubmit(event){
+    event.preventDefault();
+    try{
+      await createGuest (event, state);
+      const { first_name, last_name, email } = state.guestData[0]; // Assuming first guest's data, only allowing 1 for now
+      setSubmittedData({ firstName: first_name, lastName: last_name, email });
+      setIsSubmitted(true);
+      setErrorMessage('');
+    } catch (error){
+      setErrorMessage ('There was an error submitting the form. Please try again.')
+    }
+  }
+
+  if (isSubmitted && submittedData) {
+    return (
+      <ThankYou
+        firstName={submittedData.firstName}
+        lastName={submittedData.lastName}
+        email={submittedData.email}
+      />
+    );
+  }
+
   return (
     <div className="signup-form-container">
-      <form onSubmit= {(event) => createGuest(event,state)}>
+      {errorMessage && (
+        <div className="error-message">
+          {errorMessage}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit}>
         {state.guestData.map((guest, index) => {//for the current state, loop through each guest in guestData array. index here just signifies the guest you are on.
-          
           const isVisible = guest.isVisible //check if the guest object has a property of isVisible true.
           let count = state.guestData.length
           
@@ -84,9 +116,9 @@ export default function SignUpForm() { //create a sign up form component
           );
         })}
         <div className="form-buttons">
-        <div className="button-link">
+        {/* <div className="button-link"> //Hiding Add guest button for now until toggle functionality is complete
           <Button label="Add A Guest" onClick={addGuest} />
-        </div>
+        </div> */} 
 
         <div className="button-link">
           <Button type="submit" label="Submit" />

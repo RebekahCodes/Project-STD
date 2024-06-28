@@ -1,0 +1,16 @@
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .thank-you-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically within the container */
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
