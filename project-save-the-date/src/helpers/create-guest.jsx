@@ -5,10 +5,9 @@ export async function createGuest(event, state) {
   event.preventDefault(); //the default behaviour on submitis for the page to refresh. we dont want this.
 
   const guestDataJson = JSON.stringify(state.guestData); //Declare a variable that represents the guest(s) as an array of objects, parsed as a JSON object.
-  
   //Create a fetch which posts to the api with the guestDataJson variable fed to the addGuest function as an argument,
   try {
-
+    
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/guests/",
       {
         method: "POST",
