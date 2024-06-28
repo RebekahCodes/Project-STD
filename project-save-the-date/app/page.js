@@ -11,10 +11,10 @@ export default function Home() {
 
       <div className="info-grid">
         <Info
-          title="Becky & Gerrone Are Getting Married!"
-          date="4th July 2024"
-          location="SURREY, UK"
-          text="Please click below to enter your contact details so that we can send your invitation"
+          title={process.env.NEXT_PUBLIC_TITLE}
+          date={process.env.NEXT_PUBLIC_DATE}
+          location={process.env.NEXT_PUBLIC_LOCATION}
+          text={process.env.NEXT_PUBLIC_TEXT}
         />
 
         <div className="button-link">
