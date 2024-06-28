@@ -5,7 +5,7 @@ export default function Footer() {
   return (
 
 <footer className="site-footer">
-     <p>© Becky & Gerrone 2024</p>
+     <p>{process.env.NEXT_PUBLIC_SITE_FOOTER}</p>
 </footer>
 
 
