@@ -6,7 +6,5 @@ export default function Footer() {
 <footer className="site-footer">
      <p>{process.env.NEXT_PUBLIC_SITE_FOOTER}</p>
 </footer>
-
-
   );
 }
