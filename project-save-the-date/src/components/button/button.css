@@ -8,6 +8,8 @@
     margin-bottom: 20px;
     background: #DDC9E3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: inherit; /* Inherit color from parent element */
+  text-decoration: none; /* Remove underline */
     
 }
 
@@ -27,4 +29,8 @@
     text-decoration: none; 
     color: inherit; 
 }
+.button-link:hover {
+    /* Optional: Define hover styles */
+    text-decoration: underline; /* Underline on hover */
+  }
 
