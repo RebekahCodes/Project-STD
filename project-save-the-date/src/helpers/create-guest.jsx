@@ -7,13 +7,8 @@ export async function createGuest(event, state) {
   const guestDataJson = JSON.stringify(state.guestData); //Declare a variable that represents the guest(s) as an array of objects, parsed as a JSON object.
   //Create a fetch which posts to the api with the guestDataJson variable fed to the addGuest function as an argument,
   try {
-    let apiUrl;
-    if (process.env.NODE_ENV === 'production') {
-      apiUrl = process.env.REACT_APP_NEXT_PROD_API_URL; 
-    } else {
-      apiUrl = process.env.REACT_APP_DEV_API_URL; 
-    }
-    const response = await fetch(apiUrl + "/guests/",
+    
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/guests/",
       {
         method: "POST",
         headers: {
