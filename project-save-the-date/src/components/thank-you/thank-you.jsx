@@ -1,5 +1,4 @@
 import React from 'react';
-import "./thank-you.css";
 
 export default function ThankYou({ firstName, lastName, email }) {
   return (

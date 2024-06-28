@@ -20,13 +20,16 @@ export async function createGuest(event, state) {
     if (response.ok) {
       console.log("Guests added successfully!");
       console.log(guestDataJson);
+      return { success: true }; // Return an object with success: true on successful response
     } else {
       const errorData = await response.json();
       console.error("Error adding guest(s):", errorData.message);
       console.log(guestDataJson);
+      return { success: false }; // Return an object with success: false on error
     }
   } catch (error) {
     console.error("Error sending request:", error);
     console.log(guestDataJson);
+    return { success: false }; // Return an object with success: false on any error
   }
 }
