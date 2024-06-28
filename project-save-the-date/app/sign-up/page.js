@@ -7,7 +7,7 @@ export default function SignUp() {
     <>
       <div className="sign-up-page-container">
         <Info
-          title="Becky & Gerrone"
+          title={process.env.NEXT_PUBLIC_NAMES}
           date={process.env.NEXT_PUBLIC_DATE}
           text="If more than one person from your household has received a save-the-date, you can respond on their behalf by choosing to 'Add A Guest'"
         />
