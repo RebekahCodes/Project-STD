@@ -22,7 +22,7 @@ a.button-link,
 a.button-link:visited,
 a.button-link:hover,
 a.button-link:active {
-  color: inherit !important; /* Inherit color from parent element */
+    color: black !important; /* Inherit color from parent element */
   text-decoration: none !important; /* Remove underline */
 }
 
