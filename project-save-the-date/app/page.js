@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="home-container">
-      <HeroImage src={process.env.NEXT_PUBLIC_IMAGE_URL} alt="photo of a couple" />
+      <HeroImage src="/images/stock-image.png" alt="photo of a couple" />
 
       <div className="info-grid">
         <Info
