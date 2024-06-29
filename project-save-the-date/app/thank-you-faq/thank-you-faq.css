@@ -5,3 +5,16 @@ a.button-link:active {
     color: black !important; /* Inherit color from parent element */
   text-decoration: none !important; /* Remove underline */
 }
+
+
+.add-to-calendar-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto; /* Adjust margin as needed */
+  margin-top: 5px;
+}
+
+.info-text{
+  margin-bottom: 5pxpx;
+}

@@ -6,6 +6,7 @@
     border: 1px solid rgb(205, 205, 205);
     border-radius: 25px;
     margin-bottom: 20px;
+    margin-top: 20px;
     background: #DDC9E3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     color: black !important; /* Inherit color from parent element */
