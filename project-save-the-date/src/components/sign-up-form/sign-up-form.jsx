@@ -8,7 +8,33 @@
   import {newGuest, reducer} from "../../state/reducer.jsx";
   import { handleInputChanges } from "@/state/input-change";
  
-
+  const allowedDomains = [
+    'gmail.com',
+    'yahoo.com',
+    'hotmail.com',
+    'outlook.com',
+    'live.com', 
+    'live.co.uk',
+    'googlemail.com', 
+    'hotmail.co.uk',
+    'yahoo.co.uk',
+    'aol.com',
+    'icloud.com', 
+    'btinternet.com', 
+    'virginmedia.com', 
+    'sky.com', 
+    'talktalk.net', 
+    'mail.com'
+  ];
+  
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return false;
+    }
+    const domain = email.split('@')[1];
+    return allowedDomains.includes(domain);
+  };
 
   export default function SignUpForm() { //create a sign up form component
     const [state, dispatch] = useReducer(reducer, newGuest); //pass newGuest state to the reducer function
@@ -38,6 +64,17 @@
     // Handle form submission
     async function handleSubmit(event) {
       event.preventDefault();
+      let allEmailsValid = true;
+      state.guestData.forEach(guest => {
+        if (!isValidEmail(guest.email)) {
+          allEmailsValid = false;
+        }
+      });
+  
+      if (!allEmailsValid) {
+        setErrorMessage('Invalid guest email');
+        return;
+      }
       try {
         const result = await createGuest(event, state);
         // Check if result is an object and has a success property
