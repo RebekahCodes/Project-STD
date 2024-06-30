@@ -72,7 +72,7 @@
       });
   
       if (!allEmailsValid) {
-        setErrorMessage('Invalid guest email');
+        setErrorMessage('Invalid guest email, please contact us directly with your email');
         return;
       }
       try {

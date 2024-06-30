@@ -52,3 +52,12 @@ input:-webkit-autofill {
     -webkit-text-fill-color: inherit; 
     -webkit-box-shadow: 0 0 0px 1000px #ffffff inset; 
 }
+
+.error-message {
+    color: red;
+    font-weight: bolder;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 25px;
+    text-align: center;
+  }
