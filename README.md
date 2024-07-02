@@ -7,8 +7,12 @@ This is part of a full stack application I have built which includes [Save-The-D
 
 ## Tech Stack
 
-JavaScript, React, Nextjs, HTML, CSS, Vercel
-
+- JavaScript
+- React
+- Next.js
+- HTML
+- CSS
+- Vercel
 
 
 ## Screenshots
