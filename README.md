@@ -25,10 +25,9 @@ JavaScript, React, Nextjs, HTML, CSS, Vercel
 After initially building Save The Date as a personl project to help manage guest for my upcoming wedding, I am now focussing on adding additional features to improve is functionality and enable other users to easily implement this application to use for their own events' guest management. 
 
 - [x] Allow multi-guest household submssions
-- [x] Toggle to hide/show multiple guests
-- [ ] Add more robust form validation
+- [x] Add more robust form validation
 - [ ] Checkbox option to use the same email address for whole household
-- [ ] Add form submission confirmation
+- [x] Add form submission confirmation
 - [ ] Verify guest is invited before form submission
 
 
