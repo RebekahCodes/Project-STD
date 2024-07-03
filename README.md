@@ -17,7 +17,9 @@ This is part of a full stack application I have built which includes [Save-The-D
 
 ## Screenshots
 <p align="center">
-<img src="https://github.com/RebekahCodes/Project-STD/assets/156112643/0c3f88be-f7d3-44de-a0d9-b6452aa0bee6" width="500" height="500">
+<img src="https://github.com/RebekahCodes/Project-STD/assets/156112643/49a3b54d-f2a4-484c-9039-8e3f80489619" width="500" height="500">
+<img src="https://github.com/RebekahCodes/Project-STD/assets/156112643/c09d7039-77ef-4cac-b183-b152429a711d" width="500" height="500">
+  
 </p>
 
 ## Features
