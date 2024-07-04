@@ -17,9 +17,7 @@ export default function ThankYouFaq() {
            location="We have received your contact details and will be in touch soon."
            text={process.env.NEXT_PUBLIC_DATE}
         />
-      </div>
-      
-      <div className="add-to-calendar-button">
+<div className="add-to-calendar-button">
       
       <AddToCalendarButton
   name={process.env.NEXT_PUBLIC_TITLE}
@@ -31,6 +29,10 @@ export default function ThankYouFaq() {
   label="Add To My Calendar"
 />
 </div>
+        
+      </div>
+      
+      
 <div/>
       <HeroImage src={process.env.NEXT_PUBLIC_IMAGE_URL} alt="photo of a couple" />
     

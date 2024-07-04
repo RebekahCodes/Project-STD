@@ -40,6 +40,7 @@ export default function SignUpForm() {
   const [state, dispatch] = useReducer(reducer, newGuest); //pass newGuest state to the reducer function
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState (false); //create state to track when for is submitting
 
   //Create an async function that waits for the response from the API call and then gives the user a message
   // Handle form submission
@@ -58,6 +59,7 @@ export default function SignUpForm() {
       );
       return;
     }
+    setIsSubmitting(true);//set submitting state to true
     try {
       const result = await createGuest(event, state);
       // Check if result is an object and has a success property
@@ -78,6 +80,8 @@ export default function SignUpForm() {
     } catch (error) {
       console.error("Error during submission: ", error);
       setErrorMessage("An error occurred during submission. Please try again.");
+    }finally {
+      setIsSubmitting(false); // Set submitting state to false after API call completes
     }
   }
 
@@ -126,7 +130,7 @@ export default function SignUpForm() {
         )}
         <div className="form-buttons">
           <div className="button-link">
-            <Button type="submit" label="Submit" />
+            <Button type="submit" label={isSubmitting ? "Submitting..." : "Submit"} disabled={isSubmitting} />
           </div>
         </div>
       </form>
